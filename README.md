@@ -13,15 +13,15 @@ Entrega final: 8 de Marzo
 # Enlaces:
 https://web.cs.wpi.edu/~emmanuel/courses/cs545/S14/
 
-*) En algunos casos, se provee el código (en Java). Pueden investigar la herramienta (el ImageJ) para guiarse y hacer una imitación fiel de lo que el codigo original lleva a cabo.
+* En algunos casos, se provee el código (en Java). Pueden investigar la herramienta (el ImageJ) para guiarse y hacer una imitación fiel de lo que el codigo original lleva a cabo.
 
-*) Para darle seriedad a su informe, se recomienda probar con las mismas imágenes proveídas en las diapositivas y validar que los resultados sean los mismos. Adicional deben probar con otras imágenes
-*) En los casos en los que el código no se provee, se debe investigar la funcionalidad específica.
+* Para darle seriedad a su informe, se recomienda probar con las mismas imágenes proveídas en las diapositivas y validar que los resultados sean los mismos. Adicional deben probar con otras imágenes
+* En los casos en los que el código no se provee, se debe investigar la funcionalidad específica.
 
-*) Se debe entregar: Informe, código fuente e imágenes de prueba.
-
-
-*) En el caso particular que los integrantes de un equipo no lleguen a un acuerdo, pueden trabajarlo de manera individual.
+* Se debe entregar: Informe, código fuente e imágenes de prueba.
 
 
-* ) Deben Entregar la tarea como  un proyecto indivdual. En el PDF deben venir los integrantes (o se considera solo los nombres de los integrantes que esten dentro del PDF)
+* En el caso particular que los integrantes de un equipo no lleguen a un acuerdo, pueden trabajarlo de manera individual.
+
+
+* Deben Entregar la tarea como  un proyecto indivdual. En el PDF deben venir los integrantes (o se considera solo los nombres de los integrantes que esten dentro del PDF)
