@@ -13,6 +13,9 @@ Entrega final: 8 de Marzo
 # Enlaces:
 https://web.cs.wpi.edu/~emmanuel/courses/cs545/S14/
 
+# Lectura 7:
+https://web.cs.wpi.edu/~emmanuel/courses/cs545/S14/slides/lecture07.pdf
+
 * En algunos casos, se provee el código (en Java). Pueden investigar la herramienta (el ImageJ) para guiarse y hacer una imitación fiel de lo que el codigo original lleva a cabo.
 
 * Para darle seriedad a su informe, se recomienda probar con las mismas imágenes proveídas en las diapositivas y validar que los resultados sean los mismos. Adicional deben probar con otras imágenes
