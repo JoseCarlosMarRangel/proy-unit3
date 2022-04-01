@@ -1,14 +1,13 @@
+
 import cv2
-from cv2 import floodFill
+import matplotlib.pyplot as plt
 import numpy as np
 
-print(cv2.__version__)
-
-# floodfill with stack and opencv
-# https://docs.opencv.org/3.4/d4/d70/tutorial_py_flood_fill.html
+print("Version del opencv: ")
+print(cv2.__version__, "\n")
 
 
-# Stack needed for floodfill
+# * Clase stack para tener un stack manual
 class Stack:
 
     def __init__(self):
@@ -23,35 +22,49 @@ class Stack:
     def pop(self):
         return self.items.pop()
 
-    def peek(self):
-        return self.items[len(self.items) - 1]
-
     def size(self):
         return len(self.items)
 
-# Floodfill function
 
-
+# * Obtener y poner pixel
 def getpixel(img, x, y):
-    for x in range(0, img.shape[0]):
-        for y in range(0, img.shape[1]):
-            print(img[x, y])
+    return img[x, y]
+
+# * Pone los pixeles con el label recibido de de la funcion floodfill
 
 
 def putpixel(x, y, label):
+    # Poner pixeles en la imagen usando el stack
+    img[x, y] = label
+    return img
 
 
+# * Se obtiene el label de las regiones
+def region_labeling(th1):
+    m = 2
+    # print(th1.shape)
+    for i in range(th1.shape[0]):
+        for j in range(th1.shape[1]):
+            #print(th1[i, j])
+            if th1[i, j] == 255:
+                floodfill(th1, i, j, m)
+                m = m + 1
+    return th1
+
+
+# * Se hace el floodfill
 def floodfill(img, x, y, label):
     stack = Stack()
     stack.push((x, y))
     while not stack.isEmpty():
         stack.pop()
-        # obtener largo y ancho de la imagen
         height, width = img.shape[:2]
-        print("height: ", height, "width: ", width)
+
         if((x >= 0) and (x < width) and (y >= 0)
-           and (y < height) and getpixel(img, x,
-                                         y) == 1):
+           and (y < height) and getpixel(img, x, y) == 1):
+            #print("Entro en flood fill")
+            #print("height: ", height, "width: ", width)
+            #putpixel(x, y, label)
             putpixel(x, y, label)
 
             stack.push((x + 1, y))
@@ -59,14 +72,17 @@ def floodfill(img, x, y, label):
             stack.push((x, y - 1))
             stack.push((x - 1, y))
 
-    return img
 
-
+# * Metodo main
 if __name__ == '__main__':
-    img = cv2.imread('floodfill3.png')
-    cv2.imshow('image original', img)
+    #img = cv2.imread('00-puppy.jpg', 0)
+    img = cv2.imread('floodfill3.png', 0)
+    img = cv2.resize(img, (400, 400))
+    ret, th1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+    cv2.imshow("SimpleBinarizacion", th1)
+    # cv2.waitKey()
+    img2 = region_labeling(th1)
+    cv2.imshow("Imagen labeling", img2)
+    img3 = putpixel(0, 0, 255)
+    cv2.imshow("resultado final", img3)
     cv2.waitKey()
-    cv2.destroyAllWindows()
-    # getpixel()
-    floodfill(img, 10, 10, 50)
-    cv2.imwrite('resultado.png', floodfill(img, 10, 10, 50))
