@@ -89,4 +89,5 @@ if __name__ == '__main__':
     #cv2.imshow("Imagen labeling", img2)
     img3 = putpixel(0, 0, 255)
     cv2.imshow("resultado final", img3)
+    cv2.imwrite("resultado.png", img3)
     cv2.waitKey()
