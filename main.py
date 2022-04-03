@@ -36,7 +36,7 @@ def getpixel(img, x, y):
 def putpixel(x, y, label):
     # Poner pixeles en la imagen usando el stack
     img[x, y] = label
-
+    #print("entro en putpixel")
     return img
 
 
@@ -47,7 +47,8 @@ def region_labeling(th1):
     for i in range(th1.shape[0]):
         for j in range(th1.shape[1]):
             #print(th1[i, j])
-            if th1[i, j] == 255:
+            if th1[i, j] <= 1:
+                #print("entro para floodfill")
                 floodfill(th1, i, j, m)
                 m = m + 1
     return th1
@@ -60,10 +61,9 @@ def floodfill(img, x, y, label):
     while not stack.isEmpty():
         stack.pop()
         height, width = img.shape[:2]
-
         if((x >= 0) and (x < width) and (y >= 0)
-           and (y < height) and getpixel(img, x, y) == 1):
-            print("Entro en flood fill")
+           and (y < height) and getpixel(img, x, y) == 255):
+            #print("Entro en flood fill")
             #print("height: ", height, "width: ", width)
             #putpixel(x, y, label)
             putpixel(x, y, label)
@@ -73,21 +73,25 @@ def floodfill(img, x, y, label):
             stack.push((x, y - 1))
             stack.push((x - 1, y))
 
+    img2 = putpixel(x, y, label)
+    cv2.imshow("img2", img2)
+
 
 # * Metodo main
 if __name__ == '__main__':
-    #img = cv2.imread('00-puppy.jpg', 0)
+    #img = cv2.imread('floodfill.png', 0)
     img = cv2.imread('floodfill3.png', 0)
     original = cv2.imread('floodfill3.png')
+    #original = cv2.imread('floodfill.png')
     original = cv2.resize(original, (400, 400))
     cv2.imshow('Original', original)
     img = cv2.resize(img, (400, 400))
     ret, th1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
     cv2.imshow("SimpleBinarizacion", th1)
     # cv2.waitKey()
-    #img2 = region_labeling(th1)
+    region_labeling(th1)
     #cv2.imshow("Imagen labeling", img2)
-    img3 = putpixel(0, 0, 255)
-    cv2.imshow("resultado final", img3)
-    cv2.imwrite("resultado.png", img3)
+    #img3 = putpixel(0, 0, 255)
+    #cv2.imshow("resultado final", img3)
+    #cv2.imwrite("resultado.png", img3)
     cv2.waitKey()
